@@ -1,6 +1,6 @@
 # spork
 
-> Stress-free node child process spawning & management
+> Stress-free node child process spawning and management
 
 ----------
 
