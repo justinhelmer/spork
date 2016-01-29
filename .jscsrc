@@ -1,0 +1,133 @@
+/**
+ * Adheres to Google's JavaScript style guide, unless otherwise noted.
+ *
+ * @see https://google.github.io/styleguide/javascriptguide.xml
+ */
+{
+  "requireCurlyBraces": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "try",
+    "catch"
+  ],
+  "requireOperatorBeforeLineBreak": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "maximumLineLength": {
+    "value": 150, // 80 characters is the default. We aren't on teletype machines or using VIM all day.
+    "allExcept": ["comments", "regex"]
+  },
+  "validateIndentation": 2,
+  "validateQuoteMarks": "'",
+
+  "disallowMultipleLineStrings": true,
+  "disallowMixedSpacesAndTabs": true,
+  "disallowTrailingWhitespace": true,
+  "disallowSpaceAfterPrefixUnaryOperators": true,
+
+  /**
+   * "disallowMultipleVarDecl" - the reason behind this change demands a bit of elaboration.
+   *
+   * `true` is the default value. Forcing every var to be declared separately is generally a good thing, but can
+   *  make the code unnecessarily cumbersome in some circumstances. Consider the following case:
+   *
+   *              var buffer, fs, stream;
+   *              var name, png;
+   *
+   * Here, we can see two, logically grouped sets of undefined variables. It demonstrates purpose in just two lines
+   * and is easy to refactor. This is preferred over the stricter Google standard, which would look like this:
+   *
+   *              var buffer;
+   *              var fs;
+   *              var name;
+   *              var png;
+   *              var stream;
+   *
+   * Our screens are wider than they are long! And each variable here averages about 4 characters in length.
+   * All that said, we still generally want to adopt the Google standard, and declare variables separately:
+   *
+   *              var someVariable;
+   *              var anotherVariable;
+   *              var aThirdVariable = 'foo';
+   *              var aFourthVariable;
+   *              var aFifthVariable = 'bar';
+   *
+   * The benefits for breaking it up like this as opposed to using a single `var` statement are not superfluous,
+   * and are well depicted here: http://benalman.com/news/2012/05/multiple-var-statements-javascript/
+   */
+  "disallowMultipleVarDecl": {
+    "allExcept": ["undefined"]
+  },
+  "disallowKeywordsOnNewLine": ["else"],
+
+  "requireSpaceAfterKeywords": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "switch",
+    "return",
+    "try",
+    "catch"
+  ],
+  "requireSpaceBeforeBinaryOperators": [
+    "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+    "&=", "|=", "^=", "+=",
+
+    "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+    "|", "^", "&&", "||", "===", "==", ">=",
+    "<=", "<", ">", "!=", "!=="
+  ],
+  "requireSpaceAfterBinaryOperators": true,
+  "requireSpacesInConditionalExpression": true,
+  "requireSpaceBeforeBlockStatements": true,
+  "requireSpacesInForStatement": true,
+  "requireLineFeedAtFileEnd": true,
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true
+  },
+  "disallowSpacesInAnonymousFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInsideObjectBrackets": "all",
+  "disallowSpacesInsideArrayBrackets": "all",
+  "disallowSpacesInsideParentheses": true,
+
+  "disallowMultipleLineBreaks": true,
+  "disallowNewlineBeforeBlockStatements": true,
+  "disallowKeywords": ["with"],
+  "disallowSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInCallExpression": true,
+  "disallowSpaceAfterObjectKeys": true,
+  "requireSpaceBeforeObjectValues": true,
+  "requireCapitalizedConstructors": true,
+  "requireDotNotation": true,
+  "requireSemicolons": true,
+  "validateParameterSeparator": ", ",
+
+  // We don't have docs set up yet
+  "jsDoc": false
+  /**
+  "jsDoc": {
+      "checkAnnotations": "closurecompiler",
+      "checkParamNames": true,
+      "requireParamTypes": true,
+      "checkRedundantParams": true,
+      "checkReturnTypes": true,
+      "checkRedundantReturns": true,
+      "requireReturnTypes": true,
+      "checkTypes": true,
+      "checkRedundantAccess": true,
+      "requireNewlineAfterDescription": true
+  }
+  */
+
+}
