@@ -18,8 +18,9 @@ to keep the interface simple. It also takes advantage of the power of [forever-m
 robustness to the interface. The syntax should be straight-forward and familiar:
 
 ```js
+const spork = require('node-spork');
+
 spork(command, args, options);
-```
 ```
 
 Besides spawning child processes, `spork` can do a few other things:
@@ -39,7 +40,7 @@ $ npm install --save node-spork
  
 ## The interface
 
-Instead of doing this:
+Normally, _all_ of this is required for just **one** process, in order to spawn it, act on data events, and exit cleanly:
 
 ```js
 const done = async();
@@ -99,7 +100,7 @@ function exitHandler(exitData, err) {
 }
 ```
 
-Do this:
+Instead, just do this, to produce the same result:
 
 ```js
 spork('command', ['--arg1', '--arg2'], {env: {WHATEVER: 'isNeeded'}})
