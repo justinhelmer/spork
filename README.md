@@ -132,8 +132,8 @@ spork('command', ['--arg1', '--arg2'], {exit: true});
 ## Options
 
 All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus:
-- `quiet` _{boolean}_ - Suppress all output.
-- `verbose` _{mixed}_ - Can be a boolean or a number. The higher the number, the higher the verbosity.
+- `quiet` _{boolean}_ - Suppress all output. Defaults to `false`.
+- `verbose` _{mixed}_ - Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
 - `exit` _{boolean}_ - Close the child process on exit.
 - `stdio` _{array}_ - Identify the file descriptors to use for `STDIN`, `STDOUT`, `STDERR`. Each value not provided
 defaults to `inherit`, i.e. `['inherit', 'inherit', 'inherit']`. Possible values:
