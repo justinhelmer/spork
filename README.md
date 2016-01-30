@@ -15,15 +15,20 @@ Even a number of popular `node` modules, `grunt` plugins, etc. fail to exit clea
 
 `Spork` follows a very similar syntax to `node` core's [child_process.spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options)
 to keep the interface simple. It also takes advantage of the power of [forever-monitor](https://github.com/foreverjs/forever-monitor) to add some much-needed
-robustness to the interface.
+robustness to the interface. The syntax should be straight-forward and familiar:
+
+```js
+spork(command, args, options);
+```
+```
 
 Besides spawning child processes, `spork` can do a few other things:
 
  - manage and kill processes that fail
  - capture/act on `stido` events
- - color output
- - `verbose` option to show more output
- - `quiet` option to show less output
+ - show more output (`verbose`)
+ - suppress all output (`quiet`)
+ - retain ANSI color character sequences through the pipe
  - exit cleanly
  
 ## Installation
@@ -39,7 +44,7 @@ Instead of doing this:
 ```js
 const done = async();
 
-const child = spawn('command', ['--arg1', '--arg2'], {
+let child = spawn('command', ['--arg1', '--arg2'], {
   env: _.extend(process.env, {
     WHATEVER: 'isNeeded'
   }),
@@ -56,7 +61,7 @@ child.stdout.on('data', function(data) {
   process.stdout.write(data);
 });
 
-const errorBuffer = '';
+let errorBuffer = '';
 child.stderr.on('data', function(data) {
   errorBuffer += data;
 });
