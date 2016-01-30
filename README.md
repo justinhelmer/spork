@@ -6,10 +6,15 @@
 
 Not everything has a `node` adapter. Often times, there is a need to spawn a child process to run another script (maybe even fork another `node` process).
 
-Forking and managing child processes in `node` can be a pain. If something fails in the pipe, you can be left over with `phantom processes` running in the background.
-Over time, these can accumulate and result in strange issues such as blocked ports, misbehaving debug tools, "random" exits, etc.
+Forking and managing [child processes](https://nodejs.org/api/child_process.html) in `node` can prove challenging. If something fails in the pipe, you can be
+left over with `phantom processes` running in the background. Over time, these can accumulate and result in strange issues such as blocked ports,
+misbehaving debug tools, "random" exits, etc. Even a number of popular `node` modules, `grunt` plugins, etc. fail to exit cleanly. 
 
-Even a number of popular `node` modules, `grunt` plugins, etc. fail to exit cleanly.
+Additionally, the [child_process.spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options) interface is
+not very desirable. It was written for flexibility, but the majority of the time it is used the same way. Managing all of this correctly across multiple
+processes and multiple scripts can be cumbersome and error-prone.
+
+To defer this redudancy and avoid the risk, `spork` was created to try to make spawning and forking smoother -- hence the name.
 
 ## Overview
 
@@ -19,14 +24,14 @@ robustness to the interface. The syntax should be straight-forward and familiar:
 
 ```js
 const spork = require('node-spork');
-
 spork(command, args, options);
 ```
 
 Besides spawning child processes, `spork` can do a few other things:
 
  - manage and kill processes that fail
- - capture/act on `stido` events
+ - capture and/or act on `stido` events
+ - capture and/or act on failures
  - show more output (`verbose`)
  - suppress all output (`quiet`)
  - retain ANSI color character sequences through the pipe
@@ -105,10 +110,10 @@ Instead, just do this, to produce the same result:
 ```js
 spork('command', ['--arg1', '--arg2'], {env: {WHATEVER: 'isNeeded'}})
     .on('stdout', function(data) {
-      // ... do something ...
+      // .. do something
     })
     .on('exit', function(code) {
-      // ... do something ...
+      // .. do something
       process.exit(code);
     });
 ```
@@ -121,14 +126,15 @@ spork('command', ['--arg1', '--arg2'], {exit: true});
 
 ## Options
 
-- All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs)
-- `quiet` {boolean} - Suppress all output.
-- `verbose` {boolean} - Display additional output.
-- `exit` {boolean} - Close the child process on exit.
-- `stido` {array} - Identify the file descriptors to use for STDIN, STDOUT, STDERR. Default value: ['inherit', 'inherit', 'inherit']
-    - 'inherit' - read/write stream data to/from the parent process
+- All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus
+- `quiet` _{boolean}_ - Suppress all output.
+- `verbose` _{boolean}_ - Display additional output.
+- `exit` _{boolean}_ - Close the child process on exit.
+- `stido` _{array}_ - Identify the file descriptors to use for `STDIN`, `STDOUT`, `STDERR`. Each value not provided
+defaults to `inherit`, i.e. `['inherit', 'inherit', 'inherit']`. Possible values:
+    - `inherit` - read/write stream data to/from the parent process
     
-> You can completely nix the built-in `stdio` inheritence using `stido: [null, null, null]`
+> You can completely nix the built-in `stdio` inheritence using `stido: [null, null, null]` and manage it all yourself.
 
 ## Events
 
@@ -136,4 +142,4 @@ spork('command', ['--arg1', '--arg2'], {exit: true});
 
 ## Contributing
 
-This is a brand new project, but actively maintained. `Pull requests` are encouraged.
+This is a brand new project, but actively maintained. [pull requests](https://github.com/justinhelmer/node-spork/pulls) are encouraged.
