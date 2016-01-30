@@ -4,6 +4,12 @@
 
 ----------
 
+[![npm package](https://badge.fury.io/js/node-spork.svg)](https://www.npmjs.com/package/node-spork)
+[![node version](https://img.shields.io/node/v/node-spork.svg?style=flat)](http://nodejs.org/download/)
+[![dependency status](https://david-dm.org/justinhelmer/node-spork.svg)](https://github.com/justinhelmer/node-spork)
+[![devDependency status](https://david-dm.org/dwyl/esta/dev-status.svg)](https://github.com/justinhelmer/node-spork#info=devDependencies)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/node-spork/issues)
+
 Not everything has a `node` adapter. Often times, there is a need to spawn a child process to run another script (maybe even fork another `node` process).
 
 Forking and managing [child processes](https://nodejs.org/api/child_process.html) in `node` can prove challenging. If something fails in the pipe, you can be
