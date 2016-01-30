@@ -30,7 +30,7 @@ spork(command, args, options);
 Besides spawning child processes, `spork` can do a few other things:
 
  - manage and kill processes that fail
- - capture and/or act on `stido` events
+ - capture and/or act on `stdio` events
  - capture and/or act on failures
  - show more output (`verbose`)
  - suppress all output (`quiet`)
@@ -126,15 +126,15 @@ spork('command', ['--arg1', '--arg2'], {exit: true});
 
 ## Options
 
-- All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus
+All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus:
 - `quiet` _{boolean}_ - Suppress all output.
 - `verbose` _{boolean}_ - Display additional output.
 - `exit` _{boolean}_ - Close the child process on exit.
-- `stido` _{array}_ - Identify the file descriptors to use for `STDIN`, `STDOUT`, `STDERR`. Each value not provided
+- `stdio` _{array}_ - Identify the file descriptors to use for `STDIN`, `STDOUT`, `STDERR`. Each value not provided
 defaults to `inherit`, i.e. `['inherit', 'inherit', 'inherit']`. Possible values:
     - `inherit` - read/write stream data to/from the parent process
     
-> You can completely nix the built-in `stdio` inheritence using `stido: [null, null, null]` and manage it all yourself.
+> You can completely nix the built-in `stdio` inheritence using `stdio: [null, null, null]` and manage it all yourself.
 
 ## Events
 
