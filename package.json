@@ -1,6 +1,6 @@
 {
   "name": "node-spork",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Stress-free node child process spawning and management",
   "keywords": [
     "spork",
@@ -27,7 +27,7 @@
     "chalk": "^1.1.1",
     "forever-monitor": "^1.7.0",
     "lodash": "^4.0.1",
-    "node-clean-exit": "^0.1.0",
+    "node-clean-exit": "^0.1.7",
     "pluralize": "^1.2.1"
   },
   "devDendencies": {
