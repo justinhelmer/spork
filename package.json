@@ -16,7 +16,7 @@
     "url": "https://github.com/justinhelmer/node-spork/issues",
     "email": "jhelmer25@gmail.com"
   },
-  "licence": "MIT",
+  "license": "MIT",
   "author": "Justin Helmer jhelmer25@gmail.com",
   "files": [
     "lib"
