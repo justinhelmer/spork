@@ -27,6 +27,7 @@
     "chalk": "^1.1.1",
     "forever-monitor": "^1.7.0",
     "lodash": "^4.0.1",
+    "node-clean-exit": "^0.1.0",
     "pluralize": "^1.2.1"
   },
   "devDendencies": {
