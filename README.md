@@ -40,6 +40,8 @@ Besides spawning child processes, `spork` can do a few other things:
  - retain ANSI color character sequences through the pipe
  - exit cleanly
  
+Works well when used combination with [node-clean-exit](https://github.com/justinhelmer/node-clean-exit).
+ 
 ## Installation
 
 ```bash
