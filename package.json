@@ -1,6 +1,6 @@
 {
   "name": "node-spork",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Stress-free node child process spawning and management",
   "keywords": [
     "spork",
@@ -18,10 +18,7 @@
   },
   "license": "MIT",
   "author": "Justin Helmer jhelmer25@gmail.com",
-  "files": [
-    "lib"
-  ],
-  "main": "./lib/spork.js",
+  "main": "./index.js",
   "repository": "justinhelmer/node-spork",
   "dependencies": {
     "chalk": "^1.1.1",
