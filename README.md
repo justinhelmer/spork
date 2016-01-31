@@ -149,9 +149,9 @@ spork('command', {exit: true}); // args parameter not required
 
 All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus:
 - **exit** _{mixed}_ - Close the child process on exit. Can be `success`, `failure`, `always`, or `true` (alias for `always`). Defaults to `failure`.
-- **quiet** _{boolean}_ - Suppress all output. Defaults to `false`.
+- **quiet** _{boolean}_ - Output nothing (suppress STDOUT and STDERR)'). Defaults to `false`.
 - **stdio** _{array}_ - Identify whether or not to pipe STDIN, STDOUT, STDERR to the parent process. Defaults to `['inherit', 'inherit', 'inherit']`.
-- **verbose** _{mixed}_ - Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
+- **verbose** _{mixed}_ - Output more. Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
     
 > You can completely nix the built-in `stdio` inheritence using `stdio: [null, null, null]` and manage it all yourself.
 
