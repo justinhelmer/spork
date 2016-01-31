@@ -20,18 +20,24 @@
    * However, it adds sugar options, cleans up after itself, etc.
    *
    * @param {string} command - The command to run.
-   * @param {array} args - The arguments to pass to the command.
-   * @param {object} options - Additional options to be passed to Forever.monitor(), plus additional custom options:
-   *                              - quiet - Suppress all output.
-   *                              - verbose - Can be a boolean or a number. The higher the number, the higher the verbosity.
-   *                              - exit - Close the child process on exit.
-   *                              - stido - Identify the file descriptors to use for STDIN, STDOUT, STDERR"
-   *                                  - 'inherit' - read/write stream data to/from the parent process
+   * @param {mixed} [args] - The arguments to pass to the command, as an {array}. Also can pass {object} [options] in this position and ignore [args].
+   * @param {object} [options] - Additional options to be passed to forever-monitor, plus custom options.
+   * @param {mixed} [options.exit='failure'] - Close the child process on exit.
+   *                                           Can be `success`, `failure`, `always`, `false`, or `true` (alias for `always`).
+   * @param {boolean} [options.quiet=false] - Output nothing (suppress STDOUT and STDERR)').
+   * @param {array} [options.stido=['inherit', 'inherit', 'inherit']] - Identify whether or not to pipe STDIN, STDOUT, STDERR to the parent process.
+   * @param {mixed} [options.verbose=false] - Output more. Can be a boolean or a number. The higher the number, the higher the verbosity.
    * @returns {forever.Monitor}
    * @see https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
    * @see https://github.com/foreverjs/forever-monitor
    */
   function spork(command, args, options) {
+    if (_.isPlainObject(args)) {
+      // in the format: spork(command, options)
+      options = args;
+      args = null;
+    }
+
     args = _.union([command], args || []);
     options = options || {};
     exitOptions.quiet = false;
@@ -71,11 +77,20 @@
       }
     }
 
-    if (_.get(options, 'exit')) {
-      child.on('exit:code', _.ary(process.exit, 1));
+    if (options.exit !== false) {
+      child.on('exit:code', function(code) {
+        if (_.isFinite(options.verbose) && options.verbose > 1) {
+          console.log(chalk.magenta('Exiting'), chalk.blue(command), 'with code', code);
+        }
+
+        if (code === 0 && _.includes([true, 'always', 'success'], options.exit)) {
+          process.exit();
+        } else if (code !== 0 && (!options.exit || _.includes([true, 'always', 'failure'], options.exit))) {
+          process.exit(code);
+        }
+      });
     }
 
-    child.on('error:code', _.ary(process.exit, 1));
     child.start();
 
     exitOptions.children.push(child);

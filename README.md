@@ -1,5 +1,6 @@
 # spork
-Stress-free node child process spawning and management
+Stress-free node child process spawning and management. A small wrapper around [forever-monitor](https://github.com/foreverjs/forever-monitor)
+with a simple interface.
 
 [![npm package](https://badge.fury.io/js/node-spork.svg)](https://www.npmjs.com/package/node-spork)
 [![node version](https://img.shields.io/node/v/node-spork.svg?style=flat)](http://nodejs.org/download/)
@@ -127,17 +128,30 @@ Or, let `spork` handle everything:
 
 ```js
 spork('command', ['--arg1', '--arg2'], {exit: true});
+
+// or
+spork('command', {exit: true}); // args parameter not required
 ```
+
+## spawn(command, [args|options], [options])
+
+- @param **command** _{string}_ - The command to run.
+- @param **[args]** _{mixed}_ - The arguments to pass to the command, as an _{array}_. Also can pass _{object}_ **[options]**
+                                in this position and ignore **[args]**.
+- @param **[options]** _{object}_ - Additional options to be passed to
+                                    [forever-monitor](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs),
+                                    plus custom options [below](#options).
+- @returns _{[forever.monitor](https://github.com/foreverjs/forever-monitor)}_
+- @see [child_process.spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options)
+- @see [forever-monitor](https://github.com/foreverjs/forever-monitor)
 
 ## Options
 
 All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus:
-- `quiet` _{boolean}_ - Suppress all output. Defaults to `false`.
-- `verbose` _{mixed}_ - Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
-- `exit` _{boolean}_ - Close the child process on exit.
-- `stdio` _{array}_ - Identify the file descriptors to use for `STDIN`, `STDOUT`, `STDERR`. Each value not provided
-defaults to `inherit`, i.e. `['inherit', 'inherit', 'inherit']`. Possible values:
-    - `inherit` - read/write stream data to/from the parent process
+- **exit** _{mixed}_ - Close the child process on exit. Can be `success`, `failure`, `always`, or `true` (alias for `always`). Defaults to `failure`.
+- **quiet** _{boolean}_ - Suppress all output. Defaults to `false`.
+- **stdio** _{array}_ - Identify whether or not to pipe STDIN, STDOUT, STDERR to the parent process. Defaults to `['inherit', 'inherit', 'inherit']`.
+- **verbose** _{mixed}_ - Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
     
 > You can completely nix the built-in `stdio` inheritence using `stdio: [null, null, null]` and manage it all yourself.
 
