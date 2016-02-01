@@ -1,6 +1,6 @@
 {
   "name": "node-spork",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Stress-free node child process spawning and management",
   "keywords": [
     "spork",
