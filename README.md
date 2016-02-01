@@ -33,15 +33,12 @@ spork(command, args, options);
 
 Besides spawning child processes, `spork` can do a few other things:
 
- - manage and kill processes that fail
+ - manage and kill processes that fail - clean exits using [node-clean-exit](https://github.com/justinhelmer/node-clean-exit)
  - capture and/or act on `stdio` events
- - capture and/or act on failures
+ - exit automatically on `failure` and/or `success` (configurable)
  - show more output (`verbose`)
  - suppress all output (`quiet`)
- - retain ANSI color character sequences through the pipe
- - exit cleanly
- 
-Works well when used combination with [node-clean-exit](https://github.com/justinhelmer/node-clean-exit).
+ - retain `ANSI` color character sequences through the pipe
  
 ## Installation
 
@@ -50,6 +47,14 @@ $ npm install --save node-spork
 ```
  
 ## The interface
+
+[Take me straight to the API](#spawncommand-argsoptions-options)
+
+In its simplest form:
+
+```js
+spork('command', {exit: true}); // process will automatically exit when the command FAILS or SUCCEEDs
+```
 
 Normally, _all_ of this is required for just **one** process, in order to spawn it, act on data events, and exit cleanly:
 
@@ -128,9 +133,6 @@ Or, let `spork` handle everything:
 
 ```js
 spork('command', ['--arg1', '--arg2'], {exit: true});
-
-// or
-spork('command', {exit: true}); // args parameter not required
 ```
 
 ## spawn(command, [args|options], [options])
