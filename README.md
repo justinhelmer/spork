@@ -36,8 +36,7 @@ Besides spawning child processes, `spork` can do a few other things:
  - manage and kill processes that fail - clean exits using [node-clean-exit](https://github.com/justinhelmer/node-clean-exit)
  - capture and/or act on `stdio` events
  - exit automatically on `failure` and/or `success` (configurable)
- - show more output (`verbose`)
- - suppress all output (`quiet`)
+ - inherit parent stdio automatically, or suppress entirely
  - retain `ANSI` color character sequences through the pipe
  
 ## Installation
@@ -53,7 +52,7 @@ $ npm install --save node-spork
 In its simplest form:
 
 ```js
-spork('command', {exit: true}); // process will automatically exit when the command FAILS or SUCCEEDs
+spork('command', {exit: true}); // process will automatically exit when the command fails or succeeds
 ```
 
 Normally, _all_ of this is required for just **one** process, in order to spawn it, act on data events, and exit cleanly:
@@ -150,9 +149,9 @@ spork('command', ['--arg1', '--arg2'], {exit: true});
 ## Options
 
 All options [here](https://github.com/foreverjs/forever-monitor#options-available-when-using-forever-in-nodejs), plus:
-- **exit** _{mixed}_ - Close the child process on exit. Can be `success`, `failure`, `always`, or `true` (alias for `always`). Defaults to `failure`.
-- **quiet** _{boolean}_ - Output nothing (suppress STDOUT and STDERR)'). Defaults to `false`.
-- **stdio** _{array}_ - Identify whether or not to pipe STDIN, STDOUT, STDERR to the parent process. Defaults to `['inherit', 'inherit', 'inherit']`.
+- **exit** _{mixed}_ - Close the child process on exit. Can be `success`, `failure`, `always`, `true` (alias for `always`), or `false`. Defaults to `failure`.
+- **quiet** _{boolean}_ - Output nothing (suppress `STDOUT` and `STDERR`. Defaults to `false`.
+- **stdio** _{array}_ - Identify whether or not to pipe `STDIN`, `STDOUT`, `STDERR` to the parent process. Defaults to `['inherit', 'inherit', 'inherit']`.
 - **verbose** _{mixed}_ - Output more. Can be a boolean or a number. The higher the number, the higher the verbosity. Defaults to `false`.
     
 > You can completely nix the built-in `stdio` inheritence using `stdio: [null, null, null]` and manage it all yourself.
