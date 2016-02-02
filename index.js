@@ -46,6 +46,7 @@
     if (options.verbose) {
       console.log(chalk.bold.green('Launching child process:') + '\n\n    ' + chalk.white(args.join(' ')) + '\n');
       exitOptions.verbose = options.verbose;
+      options.quiet = false;
     }
 
     var customOptions = ['exit', 'quiet', 'stdio', 'verbose'];

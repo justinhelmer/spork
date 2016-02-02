@@ -1,6 +1,6 @@
 {
-  "name": "node-spork",
-  "version": "0.2.3",
+  "name": "spork",
+  "version": "0.3.0",
   "description": "Stress-free node child process spawning and management",
   "keywords": [
     "spork",
@@ -11,15 +11,15 @@
     "fork",
     "cli"
   ],
-  "homepage": "https://github.com/justinhelmer/node-spork",
+  "homepage": "https://github.com/justinhelmer/spork",
   "bugs": {
-    "url": "https://github.com/justinhelmer/node-spork/issues",
+    "url": "https://github.com/justinhelmer/spork/issues",
     "email": "jhelmer25@gmail.com"
   },
   "license": "MIT",
   "author": "Justin Helmer jhelmer25@gmail.com",
   "main": "./index.js",
-  "repository": "justinhelmer/node-spork",
+  "repository": "justinhelmer/spork",
   "dependencies": {
     "chalk": "^1.1.1",
     "forever-monitor": "^1.7.0",

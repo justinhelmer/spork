@@ -2,11 +2,10 @@
 Stress-free node child process spawning and management. A small wrapper around [forever-monitor](https://github.com/foreverjs/forever-monitor)
 with a simple interface.
 
-[![npm package](https://badge.fury.io/js/node-spork.svg)](https://www.npmjs.com/package/node-spork)
-[![node version](https://img.shields.io/node/v/node-spork.svg?style=flat)](http://nodejs.org/download/)
-[![dependency status](https://david-dm.org/justinhelmer/node-spork.svg)](https://github.com/justinhelmer/node-spork)
-[![devDependency status](https://david-dm.org/justinhelmer/node-spork/dev-status.svg)](https://github.com/justinhelmer/node-spork#info=devDependencies)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/node-spork/issues)
+[![npm package](https://badge.fury.io/js/spork.svg)](https://www.npmjs.com/package/spork)
+[![node version](https://img.shields.io/node/v/spork.svg?style=flat)](http://nodejs.org/download/)
+[![dependency status](https://david-dm.org/justinhelmer/spork.svg)](https://github.com/justinhelmer/spork)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/spork/issues)
 
 Not everything has a `node` adapter. Often times, there is a need to spawn a child process to run another script (maybe even fork another `node` process).
 
@@ -27,7 +26,7 @@ to keep the interface simple. It also takes advantage of the power of [forever-m
 robustness to the interface. The syntax should be straight-forward and familiar:
 
 ```js
-const spork = require('node-spork');
+const spork = require('spork');
 spork(command, args, options);
 ```
 
@@ -42,7 +41,7 @@ Besides spawning child processes, `spork` can do a few other things:
 ## Installation
 
 ```bash
-$ npm install --save node-spork
+$ npm install --save spork
 ```
  
 ## The interface
@@ -162,8 +161,7 @@ All options [here](https://github.com/foreverjs/forever-monitor#options-availabl
 
 ## Contributing
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/node-spork/issues)
-[![devDependency status](https://david-dm.org/justinhelmer/node-spork/dev-status.svg)](https://github.com/justinhelmer/node-spork#info=devDependencies)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/spork/issues)
 
 ## Licence
 
