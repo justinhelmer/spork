@@ -121,7 +121,7 @@ spork('command', ['--arg1', '--arg2'], {env: {WHATEVER: 'isNeeded'}})
     .on('stdout', function(data) {
       // .. do something
     })
-    .on('exit', function(code) {
+    .on('exit:code', function(code) {
       // .. do something
       process.exit(code);
     });
